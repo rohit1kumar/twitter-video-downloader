@@ -10,7 +10,7 @@
     <div>
         <h2>Twitter Video Downloader</h2>
         <form name="myForm" action="/download" method="POST">
-            <input type="text" name="url" placeholder="Enter Twitter Video URL">
+            <input type="url" name="url" placeholder="Enter Twitter Video URL">
             <input type="submit" value="Download">
         </form>
     </div>
@@ -19,12 +19,7 @@
         var form = document.forms.namedItem("myForm");
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            if (form.url.value == "") {
-                alert("Please enter a URL");
-            } else {
-                form.submit();
-            }
-
+            if (form.url.value) form.submit();
         }, false);
     </script>
 
