@@ -41,16 +41,12 @@ app.get('/', function (req, res) {
 // post request to get video url
 app.post('/download', async (req, res) => {
     try {
-        const url = req.body.url;
-        if (url === undefined || url === null || url === '') {
-            return res.render('error', { error: 'Please enter a valid url' });
-        }
-        const videoUrl = await getVideoUrl(url);
+        const videoUrl = await getVideoUrl(req.body.url);
         return res.render('download', { videoUrl });
 
     } catch (error) {
-        if (error instanceof TypeError) {
-            return res.render('error', { error: 'Please enter a valid url' });
+        if (error instanceof TypeError || error.status == 400) {
+            return res.render('error', { error: 'Please enter a valid twitter video url/link' });
         }
         return res.render('error', { error });    // error page
     }
