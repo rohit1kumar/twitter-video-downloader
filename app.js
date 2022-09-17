@@ -17,12 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // ############################Function to get url of video from twitter#######################
 async function getVideoUrl(TwitterUrl) {
-    const id = TwitterUrl.split("/").pop(); // get status id from url
-    const finalId = id.slice(0,19);
+    const id = TwitterUrl.split("/").pop().split("?")[0]; // get status id from url
     const client = new Client(bearerToken);
     const response = await client.tweets.findTweetsById({
         "ids": [
-            finalId
+            id
         ],
         "expansions": [
             "attachments.media_keys"
