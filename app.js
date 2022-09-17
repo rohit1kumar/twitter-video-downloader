@@ -30,7 +30,7 @@ async function getVideoUrl(TwitterUrl) {
             "variants"
         ]
     });
-    return response.includes.media[0].variants[1].url;
+    return response.includes.media[0].variants[0].url;
 }
 
 // index page
