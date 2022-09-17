@@ -22,7 +22,7 @@ async function getVideoUrl(TwitterUrl) {
     const client = new Client(bearerToken);
     const response = await client.tweets.findTweetsById({
         "ids": [
-            id
+            finalId
         ],
         "expansions": [
             "attachments.media_keys"
